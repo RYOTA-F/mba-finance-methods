@@ -9,9 +9,9 @@ import {
   NumberInput,
   Space,
 } from '@mantine/core'
-import { useSns } from '@/hooks/useSns'
+import { useNpv } from '@/hooks/useNpv'
 
-export default function SnsPage() {
+export default function NpvPage() {
   const {
     yearsCount,
     handleChangeYearsCount,
@@ -22,7 +22,9 @@ export default function SnsPage() {
     handleClickCalculation,
     totalPresentValue,
     tableData,
-  } = useSns()
+    isErrorYearsCount,
+    isErrorDiscountPercentage,
+  } = useNpv()
 
   return (
     <Center className="px-[10%] py-10">
@@ -31,13 +33,18 @@ export default function SnsPage() {
         <Space h="lg" />
 
         <Input.Wrapper label="期間(年数)">
-          <NumberInput value={yearsCount} onChange={handleChangeYearsCount} />
+          <NumberInput
+            value={yearsCount}
+            error={isErrorYearsCount}
+            onChange={handleChangeYearsCount}
+          />
         </Input.Wrapper>
         <Space h="lg" />
 
         <Input.Wrapper label="割引率(%)">
           <NumberInput
             value={discountPercentage}
+            error={isErrorDiscountPercentage}
             onChange={handleChangeDiscountPercentage}
           />
         </Input.Wrapper>
@@ -51,7 +58,12 @@ export default function SnsPage() {
         </Input.Wrapper>
         <Space h="lg" />
 
-        <Button onClick={handleClickCalculation}>現在価値を計算</Button>
+        <Button
+          disabled={isErrorYearsCount || isErrorDiscountPercentage}
+          onClick={handleClickCalculation}
+        >
+          現在価値を計算
+        </Button>
         <Space h="lg" />
 
         {tableData && tableData.length ? (

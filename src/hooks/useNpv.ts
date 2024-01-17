@@ -1,6 +1,5 @@
-import { useState, ChangeEvent, useCallback } from 'react'
+import { useState } from 'react'
 import { calculationPresentValue } from '@/methods/sns/calculationPresentValue'
-import { useInputState } from '@mantine/hooks'
 
 type TableData = {
   year: number
@@ -8,13 +7,23 @@ type TableData = {
   presentValue: number
 }
 
-export const useSns = () => {
+export const useNpv = () => {
   const [yearsCount, setYearsCount] = useState(0)
   const [discountPercentage, setDiscountPercentage] = useState(0)
   const [yearsCashFrow, setYearsCashFrow] = useState(0)
 
   const [totalPresentValue, setTotalPresentValue] = useState(0)
   const [tableData, setTableData] = useState<TableData[]>([])
+
+  /**
+   * 年数が0以下かどうか
+   */
+  const isErrorYearsCount = yearsCount <= 0
+
+  /**
+   * 割引率が0以下かどうか
+   */
+  const isErrorDiscountPercentage = discountPercentage <= 0
 
   /**
    * 年数を変更
@@ -73,5 +82,7 @@ export const useSns = () => {
     handleClickCalculation,
     totalPresentValue,
     tableData,
+    isErrorYearsCount,
+    isErrorDiscountPercentage,
   }
 }
