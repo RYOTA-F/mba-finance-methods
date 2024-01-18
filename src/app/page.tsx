@@ -1,5 +1,5 @@
-import { Card } from '@mantine/core'
 import Link from 'next/link'
+import { Card } from '@mantine/core'
 
 export default function Home() {
   return (

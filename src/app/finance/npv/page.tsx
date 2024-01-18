@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  Box,
   Button,
   Center,
   Table,
@@ -67,20 +68,22 @@ export default function NpvPage() {
         <Space h="lg" />
 
         {tableData && tableData.length ? (
-          <Table>
-            <Table.Thead>
-              {tableData.map((data) => (
-                <Table.Tr key={data.year}>
-                  <Table.Td>{data.year}</Table.Td>
-                  <Table.Td>年目</Table.Td>
-                  <Table.Td>{data.discountRate}</Table.Td>
-                  <Table.Td>%</Table.Td>
-                  <Table.Td>{data.presentValue}</Table.Td>
-                  <Table.Td>円</Table.Td>
-                </Table.Tr>
-              ))}
-            </Table.Thead>
-          </Table>
+          <Center bg="#fff" className="w-full rounded py-4 px-10 text-sub">
+            <Table>
+              <Table.Thead>
+                {tableData.map((data) => (
+                  <Table.Tr key={data.year}>
+                    <Table.Td>{data.year}</Table.Td>
+                    <Table.Td>年目</Table.Td>
+                    <Table.Td>{data.discountRate}</Table.Td>
+                    <Table.Td>%</Table.Td>
+                    <Table.Td>{data.presentValue}</Table.Td>
+                    <Table.Td>円</Table.Td>
+                  </Table.Tr>
+                ))}
+              </Table.Thead>
+            </Table>
+          </Center>
         ) : null}
       </div>
     </Center>
