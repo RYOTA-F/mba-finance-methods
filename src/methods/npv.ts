@@ -1,4 +1,4 @@
-import { RATE } from '../../consts/rate'
+import { RATE } from '../consts/rate'
 
 /**
  * 指定した桁を四捨五入
@@ -10,10 +10,10 @@ export const roundWithScale = (value: number, scale: number) => {
 /**
  * 現在価値を計算
  */
-export const calculationPresentValue = (
+export const calculationNetPresentValue = (
   yearsCount: number,
   discountPercentage: number,
-  yearsCashFrow: number,
+  yearsCashFrow: number
 ) => {
   // 割引率
   const discountRate = discountPercentage / RATE
@@ -22,12 +22,12 @@ export const calculationPresentValue = (
 
   // ディスカウントレートの配列
   const discountRateArray = yearsArray.map(
-    (year) => 1 / (1 + discountRate) ** year,
+    (year) => 1 / (1 + discountRate) ** year
   )
 
   // 単年度の現在価値
   const presentValueArray = discountRateArray.map(
-    (discountRate, i) => yearsCashFrow * discountRate,
+    (discountRate, i) => yearsCashFrow * discountRate
   )
 
   const totalPresentValue = presentValueArray.reduce((a, b) => a + b)
@@ -35,10 +35,10 @@ export const calculationPresentValue = (
   return {
     yearsArray,
     discountRateArray: discountRateArray.map((discountRate) =>
-      roundWithScale(discountRate, 3),
+      roundWithScale(discountRate, 3)
     ),
     presentValueArray: presentValueArray.map((presentValue) =>
-      roundWithScale(presentValue, 1),
+      roundWithScale(presentValue, 1)
     ),
     totalPresentValue: roundWithScale(totalPresentValue, 1),
   }

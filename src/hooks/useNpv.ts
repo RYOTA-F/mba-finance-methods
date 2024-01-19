@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { calculationPresentValue } from '@/methods/sns/calculationPresentValue'
+import { calculationNetPresentValue } from '@/methods/npv'
 
 type TableData = {
   year: number
@@ -59,7 +59,11 @@ export const useNpv = () => {
       discountRateArray,
       presentValueArray,
       totalPresentValue,
-    } = calculationPresentValue(yearsCount, discountPercentage, yearsCashFrow)
+    } = calculationNetPresentValue(
+      yearsCount,
+      discountPercentage,
+      yearsCashFrow
+    )
 
     setTotalPresentValue(totalPresentValue)
 
