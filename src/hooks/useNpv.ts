@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { calculationNetPresentValue } from '@/methods/npv'
+import { calculationNPV } from '@/methods/npv'
 
 type TableData = {
   year: number
@@ -47,23 +47,12 @@ export const useNpv = () => {
    * 計算ボタンをクリック
    */
   const handleClickCalculation = () => {
-    getPresentValue()
-  }
-
-  /**
-   * 現在価値を計算する
-   */
-  const getPresentValue = () => {
     const {
       yearsArray,
       discountRateArray,
       presentValueArray,
       totalPresentValue,
-    } = calculationNetPresentValue(
-      yearsCount,
-      discountPercentage,
-      yearsCashFrow
-    )
+    } = calculationNPV(yearsCount, discountPercentage, yearsCashFrow)
 
     setTotalPresentValue(totalPresentValue)
 
