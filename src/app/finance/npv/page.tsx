@@ -2,6 +2,7 @@
 
 import {
   Button,
+  Box,
   Center,
   Table,
   Title,
@@ -28,8 +29,8 @@ export default function NpvPage() {
 
   return (
     <Center className="px-[10%] py-10">
-      <div>
-        <Title>現在価値：{totalPresentValue} 円</Title>
+      <Box>
+        <Title>正味現在価値：{totalPresentValue} 円</Title>
         <Space h="lg" />
 
         <Input.Wrapper label="期間(年数)">
@@ -62,7 +63,7 @@ export default function NpvPage() {
           disabled={isErrorYearsCount || isErrorDiscountPercentage}
           onClick={handleClickCalculation}
         >
-          現在価値を計算
+          正味現在価値を計算
         </Button>
         <Space h="lg" />
 
@@ -84,7 +85,7 @@ export default function NpvPage() {
             </Table>
           </Center>
         ) : null}
-      </div>
+      </Box>
     </Center>
   )
 }

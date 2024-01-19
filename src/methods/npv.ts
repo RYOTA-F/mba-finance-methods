@@ -1,16 +1,10 @@
+import { roundWithScale } from './round'
 import { RATE } from '../consts/rate'
 
 /**
- * 指定した桁を四捨五入
+ * 正味現在価値を計算
  */
-export const roundWithScale = (value: number, scale: number) => {
-  return Math.round(value * 10 ** scale) / 10 ** scale
-}
-
-/**
- * 現在価値を計算
- */
-export const calculationNetPresentValue = (
+export const calculationNPV = (
   yearsCount: number,
   discountPercentage: number,
   yearsCashFrow: number
