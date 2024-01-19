@@ -30,7 +30,7 @@ export default function NpvPage() {
   return (
     <Center className="px-[10%] py-10">
       <Box>
-        <Title>正味現在価値：{totalPresentValue} 円</Title>
+        <Title>NPV: {totalPresentValue} 円</Title>
         <Space h="lg" />
 
         <Input.Wrapper label="期間(年数)">
