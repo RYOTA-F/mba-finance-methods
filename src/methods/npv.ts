@@ -21,7 +21,7 @@ export const calculationNPV = (
 
   // 単年度の現在価値
   const presentValueArray = discountRateArray.map(
-    (discountRate, i) => yearsCashFrow * discountRate
+    (discountRate) => yearsCashFrow * discountRate
   )
 
   const totalPresentValue = presentValueArray.reduce((a, b) => a + b)

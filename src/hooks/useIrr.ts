@@ -4,7 +4,7 @@ import { calculationIRR } from '@/methods/irr'
 export const useIRR = () => {
   const [irr, setIrr] = useState(0)
   const [initialInvestment, setInitialInvestment] = useState(0)
-  const [cashFlows, setCashFlows] = useState([0, 0, 0, 0])
+  const [cashFlows, setCashFlows] = useState([0, 0, 0])
 
   /**
    * 初期投資額が0以下かどうか
