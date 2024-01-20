@@ -1,27 +1,22 @@
-import { roundWithScale } from './round'
+import { roundWithScale } from '@/methods/round'
 
 export const calculationIRR = (cashFlows: number[]) => {
+  // 許容範囲
   const tolerance = 1.0e-7
-  let irr = 0.1 // 初期IRR推定値
+  // 下限値
+  let lowerBound = -1
+  // 上限値
+  let upperBound = 1
 
-  for (let i = 0; i < cashFlows.length; i++) {
-    const fValue = cashFlows.reduce(
+  while (upperBound - lowerBound > tolerance) {
+    const irr = (lowerBound + upperBound) / 2
+    const netPresentValue = cashFlows.reduce(
       (acc, val, idx) => acc + val / Math.pow(1 + irr, idx),
       0
     )
-    const fDerivative = cashFlows.reduce(
-      (acc, val, idx) => acc - (idx * val) / Math.pow(1 + irr, idx + 1),
-      0
-    )
 
-    const newIrr = irr - fValue / fDerivative
-
-    if (Math.abs(newIrr - irr) < tolerance) {
-      return roundWithScale(newIrr * 100, 1)
-    }
-
-    irr = newIrr
+    netPresentValue > 0 ? (lowerBound = irr) : (upperBound = irr)
   }
 
-  throw new Error('IRR not converging')
+  return roundWithScale(upperBound * 100, 1)
 }
