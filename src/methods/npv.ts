@@ -1,5 +1,5 @@
-import { roundWithScale } from './round'
-import { RATE } from '../consts/rate'
+import { RATE } from '@/consts/rate'
+import { roundWithScale } from '@/methods/round'
 
 /**
  * 正味現在価値を計算
