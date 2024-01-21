@@ -4,6 +4,8 @@ import {
   Button,
   Box,
   Center,
+  CloseButton,
+  Flex,
   Table,
   Title,
   Input,
@@ -14,16 +16,15 @@ import { useNpv } from '@/hooks/useNpv'
 
 export default function NpvPage() {
   const {
-    yearsCount,
-    handleChangeYearsCount,
+    cashFlows,
     discountPercentage,
     handleChangeDiscountPercentage,
-    yearsCashFrow,
-    handleChangeYearsCashFrow,
+    handleChangeCashFlow,
+    handleRemoveCashFlow,
+    handleAddCashFlow,
     handleClickCalculation,
     totalPresentValue,
     tableData,
-    isErrorYearsCount,
     isErrorDiscountPercentage,
   } = useNpv()
 
@@ -31,15 +32,6 @@ export default function NpvPage() {
     <Center className="px-[10%] py-10">
       <Box>
         <Title>NPV: {totalPresentValue} 円</Title>
-        <Space h="lg" />
-
-        <Input.Wrapper label="期間(年数)">
-          <NumberInput
-            value={yearsCount}
-            error={isErrorYearsCount}
-            onChange={handleChangeYearsCount}
-          />
-        </Input.Wrapper>
         <Space h="lg" />
 
         <Input.Wrapper label="割引率(%)">
@@ -51,20 +43,37 @@ export default function NpvPage() {
         </Input.Wrapper>
         <Space h="lg" />
 
-        <Input.Wrapper label="年間キャッシュフロー(円)">
-          <NumberInput
-            value={yearsCashFrow}
-            onChange={handleChangeYearsCashFrow}
-          />
+        <Input.Wrapper label="キャッシュフロー(円)">
+          {cashFlows.map((cashFlow, index) => (
+            <>
+              <Input.Wrapper label={`${index + 1}年目`}>
+                <Flex align="center">
+                  <NumberInput
+                    key={index}
+                    value={cashFlow}
+                    onChange={(e) => handleChangeCashFlow(e, index)}
+                  />
+                  <CloseButton onClick={() => handleRemoveCashFlow(index)} />
+                </Flex>
+              </Input.Wrapper>
+              <Space h="sm" />
+            </>
+          ))}
         </Input.Wrapper>
+
+        <Box>
+          <CloseButton icon={<>+</>} onClick={handleAddCashFlow} />
+        </Box>
         <Space h="lg" />
 
-        <Button
-          disabled={isErrorYearsCount || isErrorDiscountPercentage}
-          onClick={handleClickCalculation}
-        >
-          正味現在価値を計算
-        </Button>
+        <Box>
+          <Button
+            disabled={isErrorDiscountPercentage}
+            onClick={handleClickCalculation}
+          >
+            正味現在価値を計算
+          </Button>
+        </Box>
         <Space h="lg" />
 
         {tableData && tableData.length ? (

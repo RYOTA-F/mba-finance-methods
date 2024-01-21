@@ -7,11 +7,6 @@ export const useIRR = () => {
   const [cashFlows, setCashFlows] = useState([0, 0, 0])
 
   /**
-   * 初期投資額が0以下かどうか
-   */
-  const isErrorInitialInvestment = initialInvestment <= 0
-
-  /**
    * 初期投資額を変更
    */
   const handleChangeInitialInvestment = (e: number | string) => {
@@ -44,11 +39,16 @@ export const useIRR = () => {
   }
 
   /**
-   * IRRを取得
+   * IRRを計算
    */
   const handleClickCalculation = () => {
     setIrr(calculationIRR([-initialInvestment, ...cashFlows]))
   }
+
+  /**
+   * 初期投資額が0以下かどうか
+   */
+  const isErrorInitialInvestment = initialInvestment <= 0
 
   return {
     irr,

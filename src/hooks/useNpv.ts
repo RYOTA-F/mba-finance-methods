@@ -8,28 +8,10 @@ type TableData = {
 }
 
 export const useNpv = () => {
-  const [yearsCount, setYearsCount] = useState(0)
   const [discountPercentage, setDiscountPercentage] = useState(0)
-  const [yearsCashFrow, setYearsCashFrow] = useState(0)
-
+  const [cashFlows, setCashFlows] = useState([0, 0, 0])
   const [totalPresentValue, setTotalPresentValue] = useState(0)
   const [tableData, setTableData] = useState<TableData[]>([])
-
-  /**
-   * 年数が0以下かどうか
-   */
-  const isErrorYearsCount = yearsCount <= 0
-
-  /**
-   * 割引率が0以下かどうか
-   */
-  const isErrorDiscountPercentage = discountPercentage <= 0
-
-  /**
-   * 年数を変更
-   */
-  const handleChangeYearsCount = (e: number | string) =>
-    setYearsCount(Number(e))
 
   /**
    * 割引率を変更
@@ -38,10 +20,29 @@ export const useNpv = () => {
     setDiscountPercentage(Number(e))
 
   /**
-   * 年間キャッシュフローを変更
+   * キャッシュフローを変更
    */
-  const handleChangeYearsCashFrow = (e: number | string) =>
-    setYearsCashFrow(Number(e))
+  const handleChangeCashFlow = (cashFlow: number | string, index: number) => {
+    const newCashFlows = [...cashFlows]
+    newCashFlows[index] = Number(cashFlow)
+    setCashFlows(newCashFlows)
+  }
+
+  /**
+   * キャッシュフローを削除
+   */
+  const handleRemoveCashFlow = (index: number) => {
+    const newCashFlows = [...cashFlows]
+    newCashFlows.splice(index, 1)
+    setCashFlows(newCashFlows)
+  }
+
+  /**
+   * キャッシュフローを追加
+   */
+  const handleAddCashFlow = () => {
+    setCashFlows([...cashFlows, 0])
+  }
 
   /**
    * 計算ボタンをクリック
@@ -52,7 +53,7 @@ export const useNpv = () => {
       discountRateArray,
       presentValueArray,
       totalPresentValue,
-    } = calculationNPV(yearsCount, discountPercentage, yearsCashFrow)
+    } = calculationNPV(cashFlows, discountPercentage)
 
     setTotalPresentValue(totalPresentValue)
 
@@ -65,17 +66,21 @@ export const useNpv = () => {
     )
   }
 
+  /**
+   * 割引率が0以下かどうか
+   */
+  const isErrorDiscountPercentage = discountPercentage <= 0
+
   return {
-    yearsCount,
-    handleChangeYearsCount,
+    cashFlows,
     discountPercentage,
     handleChangeDiscountPercentage,
-    yearsCashFrow,
-    handleChangeYearsCashFrow,
+    handleChangeCashFlow,
+    handleRemoveCashFlow,
+    handleAddCashFlow,
     handleClickCalculation,
     totalPresentValue,
     tableData,
-    isErrorYearsCount,
     isErrorDiscountPercentage,
   }
 }
