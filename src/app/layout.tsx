@@ -23,7 +23,7 @@ export default function RootLayout({
       <body>
         <MantineProvider>
           <Header />
-          <main className="min-h-screen flex-col items-center justify-between px-24 py-10 w-full bg-main text-main">
+          <main className="min-h-screen flex-col items-center justify-between px-24 w-full bg-main text-main">
             {children}
           </main>
         </MantineProvider>
