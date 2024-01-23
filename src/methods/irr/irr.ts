@@ -1,4 +1,4 @@
-import { roundWithScale } from '@/methods/round'
+import { roundWithScale } from '@/methods/common/round'
 
 export const calculationIRR = (cashFlows: number[]) => {
   // 許容範囲
