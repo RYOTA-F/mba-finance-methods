@@ -57,4 +57,32 @@ describe('calculationNPV', () => {
       expect(result.totalPresentValue).toBe(totalPresentValue)
     })
   })
+
+  describe('Day2 Assignment3-HighSchool', () => {
+    test('NPV が正しく出力される', () => {
+      // Input
+      const cashFlows = new Array(40).fill(500)
+      const discountPercentage = 10
+
+      // Output
+      const totalPresentValue = 4889.5
+
+      const result = calculationNPV(cashFlows, discountPercentage)
+      expect(result.totalPresentValue).toBe(totalPresentValue)
+    })
+  })
+
+  describe('Day2 Assignment3-University', () => {
+    test('NPV が正しく出力される', () => {
+      // Input
+      const cashFlows = [...new Array(4).fill(-100), ...new Array(36).fill(800)]
+      const discountPercentage = 10
+
+      // Output
+      const totalPresentValue = 4970.4
+
+      const result = calculationNPV(cashFlows, discountPercentage)
+      expect(result.totalPresentValue).toBe(totalPresentValue)
+    })
+  })
 })
