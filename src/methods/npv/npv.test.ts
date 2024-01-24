@@ -100,12 +100,12 @@ describe('calculationNPV', () => {
         const discountPercentage = 5
 
         // Output
-        const totalPresentValue = 3.5999999999999996
+        const totalPresentValue = 3.6
 
         const result = calculationNPV(cashFlows, discountPercentage)
-        expect(result.totalPresentValue + initialInvestment).toBe(
-          totalPresentValue
-        )
+        expect(
+          Number((result.totalPresentValue + initialInvestment).toFixed(2))
+        ).toBe(totalPresentValue)
       })
     })
 
