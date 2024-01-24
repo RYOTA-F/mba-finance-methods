@@ -85,4 +85,38 @@ describe('calculationNPV', () => {
       expect(result.totalPresentValue).toBe(totalPresentValue)
     })
   })
+
+  describe('Day2 Assignment4-ProjectA', () => {
+    test('NPV が正しく出力される', () => {
+      // Input
+      const initialInvestment = -10
+      const cashFlows = [...new Array(3).fill(5)]
+      const discountPercentage = 5
+
+      // Output
+      const totalPresentValue = 3.5999999999999996
+
+      const result = calculationNPV(cashFlows, discountPercentage)
+      expect(result.totalPresentValue + initialInvestment).toBe(
+        totalPresentValue
+      )
+    })
+  })
+
+  describe('Day2 Assignment4-ProjectB', () => {
+    test('NPV が正しく出力される', () => {
+      // Input
+      const initialInvestment = -120
+      const cashFlows = [60, 50, 40]
+      const discountPercentage = 5
+
+      // Output
+      const totalPresentValue = 17
+
+      const result = calculationNPV(cashFlows, discountPercentage)
+      expect(result.totalPresentValue + initialInvestment).toBe(
+        totalPresentValue
+      )
+    })
+  })
 })
