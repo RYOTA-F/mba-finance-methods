@@ -57,4 +57,32 @@ describe('calculationIRR', () => {
       expect(result).toBe(irr)
     })
   })
+
+  describe('Day2 Assignment4-ProjectA', () => {
+    test('IRR が正しく出力される', () => {
+      // 初期投資
+      const initialInvestment = 10
+      // キャッシュフロー
+      const cashFlows = new Array(3).fill(5)
+      // IRR
+      const irr = 23.38
+
+      const result = calculationIRR([-initialInvestment, ...cashFlows])
+      expect(result).toBe(irr)
+    })
+  })
+
+  describe('Day2 Assignment4-ProjectB', () => {
+    test('IRR が正しく出力される', () => {
+      // 初期投資
+      const initialInvestment = 120
+      // キャッシュフロー
+      const cashFlows = [60, 50, 40]
+      // IRR
+      const irr = 12.99
+
+      const result = calculationIRR([-initialInvestment, ...cashFlows])
+      expect(result).toBe(irr)
+    })
+  })
 })
