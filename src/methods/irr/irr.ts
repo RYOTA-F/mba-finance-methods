@@ -18,5 +18,5 @@ export const calculationIRR = (cashFlows: number[]) => {
     netPresentValue > 0 ? (lowerBound = irr) : (upperBound = irr)
   }
 
-  return roundWithScale(upperBound * 100, 1)
+  return roundWithScale(upperBound * 100, 2)
 }

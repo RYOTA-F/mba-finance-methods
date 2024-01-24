@@ -9,7 +9,7 @@ describe('calculationIRR', () => {
       // キャッシュフロー
       const cashFlows = [0, 1000, 1000, 1000]
       // IRR
-      const irr = 14.7
+      const irr = 14.71
 
       const result = calculationIRR([-initialInvestment, ...cashFlows])
       expect(result).toBe(irr)
@@ -23,7 +23,7 @@ describe('calculationIRR', () => {
       // キャッシュフロー
       const cashFlows = [5, 5, 5]
       // IRR
-      const irr = 23.4
+      const irr = 23.38
 
       const result = calculationIRR([-initialInvestment, ...cashFlows])
       expect(result).toBe(irr)
@@ -37,7 +37,21 @@ describe('calculationIRR', () => {
       // キャッシュフロー
       const cashFlows = [60, 50, 40]
       // IRR
-      const irr = 13.0
+      const irr = 12.99
+
+      const result = calculationIRR([-initialInvestment, ...cashFlows])
+      expect(result).toBe(irr)
+    })
+  })
+
+  describe('Day2 Assignment2', () => {
+    test('IRR が正しく出力される', () => {
+      // 初期投資
+      const initialInvestment = 20000000000
+      // キャッシュフロー
+      const cashFlows = new Array(15).fill(2000000000)
+      // IRR
+      const irr = 5.56
 
       const result = calculationIRR([-initialInvestment, ...cashFlows])
       expect(result).toBe(irr)

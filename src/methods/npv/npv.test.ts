@@ -5,7 +5,7 @@ describe('calculationNPV', () => {
   describe('Day1 Exercises1', () => {
     test('NPV が正しく出力される', () => {
       // Input
-      const cashFlows = [200, 200, 200]
+      const cashFlows = new Array(3).fill(200)
       const discountPercentage = 10
 
       // Output
@@ -20,7 +20,6 @@ describe('calculationNPV', () => {
     test('NPV が正しく出力される', () => {
       // Input
       const cashFlows = new Array(30).fill(24000)
-      console.log(cashFlows)
       const discountPercentage = 10
 
       // Output
@@ -35,7 +34,6 @@ describe('calculationNPV', () => {
     test('NPV が正しく出力される', () => {
       // Input
       const cashFlows = new Array(15).fill(2000000000)
-      console.log(cashFlows)
       const discountPercentage = 5
 
       // Output
@@ -50,7 +48,6 @@ describe('calculationNPV', () => {
     test('NPV が正しく出力される', () => {
       // Input
       const cashFlows = new Array(15).fill(2000000000)
-      console.log(cashFlows)
       const discountPercentage = 10
 
       // Output
