@@ -3,7 +3,7 @@ import { roundWithScale } from '@/methods/common/round'
 /**
  * 内部収益率を計算
  * 高次代数方程式: 漸近法で算出 (解析法では算出不可)
- * https://envision.microsoft.com/ja-JP/tokyo?wt.mc_ID=Envision2023_esc_corp_em_oo_fld_tokyo_city_homepage%20
+ * @see https://www.itmedia.co.jp/im/articles/0707/18/news115.html
  */
 export const calculationIRR = (cashFlows: number[]) => {
   // 許容範囲
@@ -16,7 +16,7 @@ export const calculationIRR = (cashFlows: number[]) => {
   while (upperBound - lowerBound > tolerance) {
     const irr = (lowerBound + upperBound) / 2
     const netPresentValue = cashFlows.reduce(
-      (acc, val, idx) => acc + val / Math.pow(1 + irr, idx),
+      (acc, val, index) => acc + val / Math.pow(1 + irr, index),
       0
     )
 
