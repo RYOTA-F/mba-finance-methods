@@ -126,4 +126,20 @@ describe('calculationNPV', () => {
       })
     })
   })
+  describe('IEF Day3', () => {
+    describe('Assignment2', () => {
+      test('NPV が正しく出力される', () => {
+        // Input
+        const fcfs = [52, 44, 50, 52, 78, 100, 106, 122, 128, 128]
+        const newFcfs = [...fcfs]
+        newFcfs[9] = newFcfs[9] * (1 + 10)
+
+        // Output
+        const totalPresentValue = 970
+
+        const result = calculationNPV(newFcfs, 10)
+        expect(result.totalPresentValue).toBe(totalPresentValue)
+      })
+    })
+  })
 })
