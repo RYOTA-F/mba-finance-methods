@@ -14,13 +14,13 @@ describe('calculationWACC', () => {
       // Output
       const totalPresentValue = 6.31
 
-      const result = calculationWACC(
+      const result = calculationWACC({
         equity,
         debt,
         equityCost,
         debtCost,
-        taxRate
-      )
+        taxRate,
+      })
       expect(result).toBe(totalPresentValue)
     })
   })
