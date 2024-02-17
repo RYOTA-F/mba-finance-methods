@@ -27,6 +27,9 @@ export interface CalculationWACCInput {
   taxRate: number
 }
 
+/**
+ * WACCを計算
+ */
 export const calculationWACC = ({
   equity,
   debt,
